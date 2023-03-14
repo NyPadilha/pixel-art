@@ -30,3 +30,11 @@ body {
 .color.four {
     background-color: rgb(77, 236, 215);
 }
+
+#button-random-color {
+    font-size: 900px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: white;
+    border: 2px solid black;
+}
