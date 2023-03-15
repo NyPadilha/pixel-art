@@ -5,9 +5,9 @@ const cor4 = document.querySelector('.four');
 const botaoCores = document.getElementById('button-random-color');
 const colorPalette = document.getElementById('color-palette');
 const pixelBoard = document.getElementById('pixel-board');
-const pixel = document.querySelector('.pixel');
+const clearBoard = document.getElementById('clear-board');
 
-//teste para concertar requisito 10
+// teste para concertar requisito 10
 cor1.style.backgroundColor = 'rgb(0, 0, 0)';
 cor2.style.backgroundColor = 'rgb(255, 2, 2)';
 cor3.style.backgroundColor = 'rgb(0, 4, 255)';
@@ -37,15 +37,22 @@ for (let index = 0; index < 25; index += 1) {
 let corSelecionada = '#000';
 
 colorPalette.addEventListener('click', (event) => {
-    const corSelect = document.querySelector('.selected');
-    corSelect.classList.remove('selected');
-    event.target.classList.add('selected');
-    corSelecionada = event.target.style.backgroundColor;
+  const corSelect = document.querySelector('.selected');
+  corSelect.classList.remove('selected');
+  event.target.classList.add('selected');
+  corSelecionada = event.target.style.backgroundColor;
 });
 
 function pintarPixel(event) {
-    const pixelSelecionado = event.target;
-    pixelSelecionado.style.backgroundColor = corSelecionada;
+  const pixelSelecionado = event.target;
+  pixelSelecionado.style.backgroundColor = corSelecionada;
 }
 
 pixelBoard.addEventListener('click', pintarPixel);
+
+clearBoard.addEventListener('click', (event) => {
+  const pixeis = pixelBoard.children
+  for (let index = 0; index < pixeis.length; index++) {
+    pixeis[index].style.backgroundColor = 'rgb(255, 255, 255)'
+  }
+});

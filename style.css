@@ -15,7 +15,8 @@ body {
     margin-right: 10px;
 }
 
-#button-random-color {
+#button-random-color,
+#clear-board {
     font-size: 900px;
     font-size: 16px;
     border-radius: 5px;
@@ -24,7 +25,7 @@ body {
 }
 
 #pixel-board {
-    margin-top: 66px;
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     width: 210px;
@@ -37,4 +38,8 @@ body {
     width: 40px;
     height: 40px;
     background-color: white;
+}
+
+#clear-board {
+    margin-top: 20px;
 }
