@@ -7,6 +7,14 @@ const colorPalette = document.getElementById('color-palette');
 const pixelBoard = document.getElementById('pixel-board');
 const pixel = document.querySelector('.pixel');
 
+//teste para concertar requisito 10
+cor1.style.backgroundColor = 'rgb(0, 0, 0)';
+cor2.style.backgroundColor = 'rgb(255, 2, 2)';
+cor3.style.backgroundColor = 'rgb(0, 4, 255)';
+cor4.style.backgroundColor = 'rgb(77, 236, 215)';
+
+cor1.classList.add('selected');
+
 function coresAleatorias() {
   localStorage.clear();
   cor2.style.backgroundColor = `rgb(${Math.random() * (250 - 0) + 0}, 
@@ -26,9 +34,7 @@ for (let index = 0; index < 25; index += 1) {
   pixelBoard.appendChild(pixelDiv);
 }
 
-cor1.classList.add('selected');
-
-let corSelecionada = 'black';
+let corSelecionada = '#000';
 
 colorPalette.addEventListener('click', (event) => {
     const corSelect = document.querySelector('.selected');
