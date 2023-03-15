@@ -50,9 +50,9 @@ function pintarPixel(event) {
 
 pixelBoard.addEventListener('click', pintarPixel);
 
-clearBoard.addEventListener('click', (event) => {
-  const pixeis = pixelBoard.children
-  for (let index = 0; index < pixeis.length; index++) {
-    pixeis[index].style.backgroundColor = 'rgb(255, 255, 255)'
+clearBoard.addEventListener('click', () => {
+  const pixeis = pixelBoard.children;
+  for (let index = 0; index < pixeis.length; index += 1) {
+    pixeis[index].style.backgroundColor = 'rgb(255, 255, 255)';
   }
 });
