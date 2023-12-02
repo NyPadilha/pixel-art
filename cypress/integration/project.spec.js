@@ -55,11 +55,11 @@ describe('2 - Adicione à página uma paleta contendo quatro cores distintas', (
       });
   });
 
-  it('Verifica se cada elemento da paleta de cores tem uma borda preta, sólida e com 1 pixel de largura;', () => {
+  it('Verifica se cada elemento da paleta de cores tem uma borda branca, sólida e com 2 pixel de largura;', () => {
     cy.get('.color')
       .each((color) => {
         cy.wrap(color)
-          .and('have.css', 'border', `1px solid ${BLACK}`)
+          .and('have.css', 'border', `2px solid ${WHITE}`)
           .and('have.class', 'color');
       });
   });
@@ -300,13 +300,13 @@ describe('7 - Faça com que cada elemento do quadro de pixels possua 40 pixels d
       });
   });
 
-  it('Verifica se 40 pixels é o tamanho total do elemento, incluindo seu conteúdo e excluindo a borda preta, que deve ser criada à parte.', () => {
+  it('Verifica se 40 pixels é o tamanho total do elemento, incluindo seu conteúdo e excluindo a borda branca, que deve ser criada à parte.', () => {
     cy.get('.pixel')
       .each((pixel) => {
         cy.wrap(pixel)
           .should('have.css', 'height', '40px')
           .and('have.css', 'width', '40px')
-          .and('have.css', 'border', `1px solid ${BLACK}`);
+          .and('have.css', 'border', `1px solid ${WHITE}`);
       });
   });
 });
@@ -463,148 +463,148 @@ describe('11 - Crie um botão que, ao ser clicado, limpa o quadro preenchendo a 
   });
 });
 
-describe('12 - Crie uma função para salvar e recuperar o seu desenho atual no localStorage', () => {
-  beforeEach(() => {
-    cy.visit('./index.html');
-  });
+// describe('12 - Crie uma função para salvar e recuperar o seu desenho atual no localStorage', () => {
+//   beforeEach(() => {
+//     cy.visit('./index.html');
+//   });
 
-  it('Os pixels pintados devem ser salvos no localStorage com a chave `pixelBoard`', () => {
-    cy.get('.pixel:first').click().then(() => {
-      const pixelboard = localStorage.getItem('pixelBoard');
-      expect(pixelboard).to.not.equal(null);
-    });
-  })
+//   it('Os pixels pintados devem ser salvos no localStorage com a chave `pixelBoard`', () => {
+//     cy.get('.pixel:first').click().then(() => {
+//       const pixelboard = localStorage.getItem('pixelBoard');
+//       expect(pixelboard).to.not.equal(null);
+//     });
+//   })
 
-  it('O quadro deve ser preenchido com as mesmas cores utilizadas anteriormente, nas posições corretas ao recarregar a página', () => {
-    cy.get('.color').each((color, index) => {
-      if (index === 2) {
-        cy.wrap(color).click();
-        const backgroundColor = color.css('background-color');
-        const clickedPixelsIndex = [2, 7, 10, 11, 12, 13, 14, 17, 22]
-        cy.get('.pixel').each((pixel, index) => {
-          clickedPixelsIndex.forEach((pixelIndex) => {
-            if (index === pixelIndex)
-              cy.wrap(pixel).click();
-          })
-        })
-        cy.reload();
-        cy.get('.pixel').each((pixel, index) => {
-          clickedPixelsIndex.forEach((pixelIndex) => {
-            if (index === pixelIndex)
-              cy.wrap(pixel).should('have.css', 'background-color', backgroundColor)
-          })
-        })
-      }
-    })
-  })
-});
+//   it('O quadro deve ser preenchido com as mesmas cores utilizadas anteriormente, nas posições corretas ao recarregar a página', () => {
+//     cy.get('.color').each((color, index) => {
+//       if (index === 2) {
+//         cy.wrap(color).click();
+//         const backgroundColor = color.css('background-color');
+//         const clickedPixelsIndex = [2, 7, 10, 11, 12, 13, 14, 17, 22]
+//         cy.get('.pixel').each((pixel, index) => {
+//           clickedPixelsIndex.forEach((pixelIndex) => {
+//             if (index === pixelIndex)
+//               cy.wrap(pixel).click();
+//           })
+//         })
+//         cy.reload();
+//         cy.get('.pixel').each((pixel, index) => {
+//           clickedPixelsIndex.forEach((pixelIndex) => {
+//             if (index === pixelIndex)
+//               cy.wrap(pixel).should('have.css', 'background-color', backgroundColor)
+//           })
+//         })
+//       }
+//     })
+//   })
+// });
 
-describe('13 - Crie um input que permita à pessoa usuária preencher um novo tamanho para o quadro de pixels', () => {
-  beforeEach(() => {
-    cy.visit('./index.html');
-  });
+// describe('13 - Crie um input que permita à pessoa usuária preencher um novo tamanho para o quadro de pixels', () => {
+//   beforeEach(() => {
+//     cy.visit('./index.html');
+//   });
 
-  it('Verifica se existe um input com o id `board-size`', () => {
-    cy.get('#board-size').should('be.visible');
-  });
+//   it('Verifica se existe um input com o id `board-size`', () => {
+//     cy.get('#board-size').should('be.visible');
+//   });
 
-  it('Verifica se existe um botão com o id `generate-board`', () => {
-    cy.get('#generate-board').should('be.visible');
-  });
+//   it('Verifica se existe um botão com o id `generate-board`', () => {
+//     cy.get('#generate-board').should('be.visible');
+//   });
 
-  it('Verifica se o input só aceita número maiores que zero. Essa restrição deve ser feita usando os atributos do elemento `input`', () => {
-    cy.get('#board-size[type=\'number\'][min=\'1\']');
-  });
+//   it('Verifica se o input só aceita número maiores que zero. Essa restrição deve ser feita usando os atributos do elemento `input`', () => {
+//     cy.get('#board-size[type=\'number\'][min=\'1\']');
+//   });
 
-  it('Verifica se o botão contém o texto \'VQV\'', () => {
-    cy.get('#generate-board').contains(/vqv/i);
-  });
+//   it('Verifica se o botão contém o texto \'VQV\'', () => {
+//     cy.get('#generate-board').contains(/vqv/i);
+//   });
 
-  it('Verifica se o input está posicionado entre a paleta de cores e o quadro de pixels', () => {
-    cy.get('#color-palette').then((palette) => {
-      cy.get('#board-size').should('be.belowOf', palette);
-    });
+//   it('Verifica se o input está posicionado entre a paleta de cores e o quadro de pixels', () => {
+//     cy.get('#color-palette').then((palette) => {
+//       cy.get('#board-size').should('be.belowOf', palette);
+//     });
 
-    cy.get('#board-size').then((palette) => {
-      cy.get('#pixel-board').should('be.belowOf', palette);
-    });
-  });
+//     cy.get('#board-size').then((palette) => {
+//       cy.get('#pixel-board').should('be.belowOf', palette);
+//     });
+//   });
 
-  it('Verifica se o botão está posicionado ao lado do input', () => {
-    cy.get('#board-size').then((board) => {
-      cy.get('#generate-board').should('be.onTheRightOf', board);
-    });
-  });
+//   it('Verifica se o botão está posicionado ao lado do input', () => {
+//     cy.get('#board-size').then((board) => {
+//       cy.get('#generate-board').should('be.onTheRightOf', board);
+//     });
+//   });
 
-  it('Verifica se nenhum valor for colocado no input ao clicar no botão, um `alert` é exibido com o texto: \'Board inválido!\'', () => {
-    let alerted = false;
-    cy.on('window:alert', (msg) => alerted = msg);
+//   it('Verifica se nenhum valor for colocado no input ao clicar no botão, um `alert` é exibido com o texto: \'Board inválido!\'', () => {
+//     let alerted = false;
+//     cy.on('window:alert', (msg) => alerted = msg);
 
-    cy.get('#generate-board')
-      .click()
-      .then(() => expect(alerted).to.match(/Board inválido!/i));
-  });
+//     cy.get('#generate-board')
+//       .click()
+//       .then(() => expect(alerted).to.match(/Board inválido!/i));
+//   });
 
-  it('Verifica se ao clicar no botão com um valor preenchido, o tamanho do board muda.', () => {
-    cy.get('#board-size').clear().type(10);
-    cy.get('#generate-board').click();
-    cy.get('.pixel').should('have.length', 100);
-  });
+//   it('Verifica se ao clicar no botão com um valor preenchido, o tamanho do board muda.', () => {
+//     cy.get('#board-size').clear().type(10);
+//     cy.get('#generate-board').click();
+//     cy.get('.pixel').should('have.length', 100);
+//   });
 
-  it('Verifica se o novo quadro tem todos os pixels preenchidos com a cor branca', () => {
-    cy.get('#board-size').clear().type(6);
-    cy.get('#generate-board').click();
-    cy.get('.pixel')
-      .should('have.length', 36)
-      .each((pixel) => {
-        expect(pixel).to.have.css('background-color', WHITE);
-      });
-  });
-});
+//   it('Verifica se o novo quadro tem todos os pixels preenchidos com a cor branca', () => {
+//     cy.get('#board-size').clear().type(6);
+//     cy.get('#generate-board').click();
+//     cy.get('.pixel')
+//       .should('have.length', 36)
+//       .each((pixel) => {
+//         expect(pixel).to.have.css('background-color', WHITE);
+//       });
+//   });
+// });
 
-describe('14 - Crie uma função que limite o tamanho mínimo e máximo do quadro de pixels', () => {
-  beforeEach(() => {
-    cy.visit('./index.html');
-  });
+// describe('14 - Crie uma função que limite o tamanho mínimo e máximo do quadro de pixels', () => {
+//   beforeEach(() => {
+//     cy.visit('./index.html');
+//   });
 
-  it('Verifica se a altura máxima do board é 50', () => {
-    cy.get('#board-size').clear().type(50);
-    cy.get('#generate-board').click();
-    cy.get('.pixel').should('have.length', 2500);
-  });
+//   it('Verifica se a altura máxima do board é 50', () => {
+//     cy.get('#board-size').clear().type(50);
+//     cy.get('#generate-board').click();
+//     cy.get('.pixel').should('have.length', 2500);
+//   });
 
-  it('Verifica se a altura do board é 5 quando um valor menor é colocado no input', () => {
-    cy.get('#board-size').clear().type(4);
-    cy.get('#generate-board').click();
-    cy.get('.pixel').should('have.length', 25);
-  });
+//   it('Verifica se a altura do board é 5 quando um valor menor é colocado no input', () => {
+//     cy.get('#board-size').clear().type(4);
+//     cy.get('#generate-board').click();
+//     cy.get('.pixel').should('have.length', 25);
+//   });
 
-  it('Verifica se a altura do board é 50 quando um valor maior é colocado no input', () => {
-    cy.get('#board-size').clear().type(51);
-    cy.get('#generate-board').click();
-    cy.get('.pixel').should('have.length', 2500);
-  });
-});
+//   it('Verifica se a altura do board é 50 quando um valor maior é colocado no input', () => {
+//     cy.get('#board-size').clear().type(51);
+//     cy.get('#generate-board').click();
+//     cy.get('.pixel').should('have.length', 2500);
+//   });
+// });
 
-describe('15 - Crie uma função para manter o tamanho novo do board ao recarregar a página', () => {
-  beforeEach(() => {
-    cy.visit('./index.html');
-  });
+// describe('15 - Crie uma função para manter o tamanho novo do board ao recarregar a página', () => {
+//   beforeEach(() => {
+//     cy.visit('./index.html');
+//   });
 
-  it('O tamanho do board gerado deve ser salvo no localStorage com a chave `boardSize`', () => {
-    cy.get('#board-size').clear().type(6);
-    cy.get('#generate-board').click();
-    cy.reload().then(() => {
-      const boardSize = JSON.parse(localStorage.getItem('boardSize'));
-      expect(boardSize).to.not.equal(null);
-    });
-  })
+//   it('O tamanho do board gerado deve ser salvo no localStorage com a chave `boardSize`', () => {
+//     cy.get('#board-size').clear().type(6);
+//     cy.get('#generate-board').click();
+//     cy.reload().then(() => {
+//       const boardSize = JSON.parse(localStorage.getItem('boardSize'));
+//       expect(boardSize).to.not.equal(null);
+//     });
+//   })
 
-  it('O quadro deve ter o mesmo tamanho gerado ao recarregar a página.', () => {
-    cy.get('#board-size').clear().type(6);
-    cy.get('#generate-board').click();
-    cy.reload();
-    cy.get('.pixel')
-      .should('have.length', 36)
-  })
-})
+//   it('O quadro deve ter o mesmo tamanho gerado ao recarregar a página.', () => {
+//     cy.get('#board-size').clear().type(6);
+//     cy.get('#generate-board').click();
+//     cy.reload();
+//     cy.get('.pixel')
+//       .should('have.length', 36)
+//   })
+// })

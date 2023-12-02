@@ -1,10 +1,24 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Pixel Art
+
+This is a simple pixel art editor made with JavaScript, HTML and CSS.
+
+## How to use
+
+- Select a color from the color palette
+- Click on a pixel to paint it
+
+## How to run
+
+- Clone this repository with:
+    - `git clone git@github.com:NyPadilha/pixel-art.git`
+    - `cd pixel-art`
+
+- Install the dependencies with:
+    - `npm install`
+
+- Run the project on Go Live
+
+- Run the tests with:
+    - `npm test`
+    - or
+    - `npm run cy:open`
