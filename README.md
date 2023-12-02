@@ -4,6 +4,8 @@ This is a simple pixel art editor made with JavaScript, HTML and CSS.
 
 ## How to use
 
+- Enter the link below:
+    - https://nypadilha.github.io/pixel-art/
 - Select a color from the color palette
 - Click on a pixel to paint it
 
