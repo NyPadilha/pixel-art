@@ -1,4 +1,4 @@
-# Pixel Art
+# Pixel Art (Trybe Project)
 
 This is a simple pixel art editor made with JavaScript, HTML and CSS.
 
